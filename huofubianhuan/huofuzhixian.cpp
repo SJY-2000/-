@@ -8,13 +8,14 @@ int main()
 	if (srcMat.empty())return -1;
 	Mat dstMat;
 	
-	std::vector<cv::Vec2f>lines;
-	Canny(srcMat, dstMat, 20, 230, 3, false);
+	Canny(srcMat, dstMat, 20, 230, 3, false);		//提取边缘
 	
-	HoughLines(dstMat, lines,1,CV_PI/180,100);
+	std::vector<cv::Vec2f>lines;
+	HoughLines(dstMat, lines,1,CV_PI/180,100);		//霍夫变换，投票域值设为100
+	//imshow("lines", lines);
 	std::vector<cv::Vec2f>::iterator it = lines.begin();
 	for (; it != lines.end(); ++it) {
-		float rho = (*it)[0], theta = (*it)[1];
+		float rho = (*it)[0], theta = (*it)[1];		//极坐标的长度和角度
 		Point pt1, pt2;
 		double a = cos(theta);
 		double b = sin(theta);

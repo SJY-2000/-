@@ -8,10 +8,10 @@ int main()
 	if (srcMat.empty())return -1;
 	float angle = -10.0, scale = 1;
 	Point2f center(srcMat.cols / 2.0, srcMat.rows / 2.0);
-	Mat rot = getRotationMatrix2D(center, angle, scale);
-	Rect bbox = RotatedRect(center, srcMat.size(), angle).boundingRect();
+	Mat rot = getRotationMatrix2D(center, angle, scale);		
+	Rect bbox = RotatedRect(center, srcMat.size(), angle).boundingRect();		//获取外界四边形
 	rot.at<double>(0, 2) += bbox.width / 2.0 - center.x;
-	rot.at<double>(1, 2) += bbox.height / 2.0 - center.y;
+	rot.at<double>(1, 2) += bbox.height / 2.0 - center.y;		//调整仿射矩阵参数
 	warpAffine(srcMat, dstMat, rot, bbox.size());
 
 	

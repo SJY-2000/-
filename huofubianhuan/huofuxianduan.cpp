@@ -9,13 +9,11 @@ int main()
 	Mat srcMat = imread("G:\\picture\\18.jpg", 1);
 	Mat buffMat = imread("G:\\picture\\18.jpg", 0);
 	Mat lineMat;
-
 	
-	Canny(buffMat, dstMat, 20, 200, 3, false);
+	Canny(buffMat, dstMat, 20, 200, 3, false);		
 	
-	HoughLinesP(dstMat, lineMat, 1, CV_PI / 180, 15, 40, 5);
-
-	
+	HoughLinesP(dstMat, lineMat, 1, CV_PI / 180, 50, 40, 5);		//累积概率霍夫变换，投票阈值为50
+		
 	for (int i = 0; i < lineMat.rows; i++)
 	{
 		Point pt1, pt2;
